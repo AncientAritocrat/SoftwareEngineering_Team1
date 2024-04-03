@@ -1,0 +1,20 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.target }}
+        <input type="submit" id="MySubmit">
+    </form>
+</div>
+
+</body>
+</html>
