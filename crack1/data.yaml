@@ -1,0 +1,13 @@
+train: C:/Users/冯祎欣/软件工程作业/surface_crack_detection/crack/train/images
+val: C:/Users/冯祎欣/软件工程作业/surface_crack_detection/crack/valid/images
+test: C:/Users/冯祎欣/软件工程作业/surface_crack_detection/crack/test/images
+
+nc: 2
+names: ['crack', 'Crack']
+
+roboflow:
+  workspace: project-aw2zl
+  project: crack-ancbd
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/project-aw2zl/crack-ancbd/dataset/2
