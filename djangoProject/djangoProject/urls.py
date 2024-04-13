@@ -19,4 +19,5 @@ from django.urls import path
 from IntegratedApp import views
 urlpatterns = [
     path('spider/', views.run_spider),
+    path('predict/', views.run_predict)
 ]

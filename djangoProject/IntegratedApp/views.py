@@ -3,7 +3,7 @@ from django import forms
 from urllib.parse import quote
 
 from utils.MySpider import spider
-
+from utils.MyYOLO import PicturePridict
 
 # Create your views here.
 
@@ -30,3 +30,6 @@ def run_spider(request):
         else:
             form = SpiderForm()
             return render(request, "spider.html", {"form": form})
+
+def run_predict(request):
+    return render(request, 'predict.html')
