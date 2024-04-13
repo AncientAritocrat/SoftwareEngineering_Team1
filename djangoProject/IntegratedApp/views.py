@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django import forms
 from urllib.parse import quote
 
-from static.utils.MySpider import spider
+from utils.MySpider import spider
 
 
 # Create your views here.

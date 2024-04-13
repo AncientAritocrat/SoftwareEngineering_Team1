@@ -8,7 +8,6 @@
     <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-5.3.0/css/bootstrap.css">
 </head>
 <body>
-
 {#加载侧边目录栏#}
 <div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
      data-bs-backdrop="false" data-bs-scroll="true">
@@ -42,32 +41,7 @@
 </div>
 {#右侧内容部分#}
 <div class="container" style="display: inline-block; width: 1078px; margin-left: 412px">
-    <div class="card text-center">
-        <div class="card-header">
-            请输入爬虫关键词
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">将会自动爬取必应相关图片</h5>
-{#            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>#}
-{#            <a href="#" class="btn btn-primary">Go somewhere</a>#}
-            <form method="POST" novalidate>
-                {% csrf_token %}
-                <div>
-                    {{ form.target }}
-                </div>
-                <button type="submit" id="MySubmit">确认</button> 
-            </form>
-        </div>
-{#        <div class="card-footer text-muted">#}
-{#            2 days ago#}
-{#        </div>#}
-    </div>
-    {#    <form method="POST" novalidate>#}
-    {#        {% csrf_token %}#}
-    {#        {{ form.target }}#}
-    {#        <input type="submit" id="MySubmit">#}
-    {#    </form>#}
+{#    在此输入内容#}
 </div>
-
 </body>
 </html>
