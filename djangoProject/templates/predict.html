@@ -1,5 +1,6 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -43,21 +44,32 @@
         <div class="card-header">
             混凝土裂缝识别
         </div>
+    
+        {% block content %}
         <div class="card-body">
             <div class="mb-3">
-                <label for="formFile" class="form-label">Default file input example</label>
-                <input class="form-control" type="file" id="formFile">
-                <button type="submit">开始识别</button>
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <label for="formFile" class="form-label">请选择需要识别的裂缝图片</label>
+{#                    <input class="form-control" type="file" id="formFile">#}
+                   <div>
+                       {{form.target }}
+                   </div>
+                    <button type="submit" id="MySubmit">开始识别</button>
+                </form>
             </div>
         </div>
+        {% endblock %}
+    
     </div>
     <div class="card mb-3">
-        <img src="/static/PredictedPicture/pic/1.jpg" class="card-img-top" alt="...">
+{#        <img src="/static/PredictedPicture/test/test.jpg" class="card-img-top" alt="...">#}
+        {% csrf_token %}
+        <img src={{ imgPath }} class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 class="card-title">识别后图片保存位置</h5>
+            <p class="card-text"> djangoProject/IntegratedApp/static/PredictedPicture/</p>
+            <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
         </div>
     </div>
 </div>
