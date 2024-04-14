@@ -12,7 +12,7 @@ def PicturePridict(image_path):
     model.predict(image_path, save=True, name=save_path)
 
 
-# path = r"D:\Documents\GitHub\SoftwareEngineering_Team1\SoftwareEngineering_Team1-LilyVon\1.jpg"
+# path = r"D:\Documents\GitHub\SoftwareEngineering_Team1\Train\1.jpg"
 '''
 path = r"D:\Documents\GitHub\SoftwareEngineering_Team1\djangoProject\test.jpg"
 PicturePridict(path)
