@@ -5,33 +5,31 @@
     <title>Title</title>
 </head>
 <body>
-<h1>XX系统登录界面</h1>
 <div class="col-lg-6 bg-white">
 	<div class="form d-flex align-items-center">
 	<div class="content">
-		<form method="post" action="login.html" class="form-validate" id="loginFrom">
 		<div class="form-group">
-			<input id="login-username" type="text" name="userName" required data-msg="请输入用户名" placeholder="用户名" value="admin" class="input-material">
+			<input id="register-username" class="input-material" type="text" name="registerUsername" placeholder="请输入用户名/姓名" >
+							<div class="invalid-feedback">
+								用户名必须在2~10位之间
+							</div>
 		</div>
 		<div class="form-group">
-			<input id="login-password" type="password" name="passWord" required data-msg="请输入密码" placeholder="密码" class="input-material">
+			<input id="register-password" class="input-material" type="password" name="registerPassword" placeholder="请输入密码"   >
+			<div class="invalid-feedback">
+								密码必须在6~10位之间
+							</div>
 		</div>
-		<button id="login" type="submit" class="btn btn-primary">登录</button>
-		<div style="margin-top: -40px;">
-			<div class="custom-control custom-checkbox " style="float: right;">
-				<input type="checkbox" class="custom-control-input" id="check2" >
-				<label class="custom-control-label" for="check2">自动登录</label>
-			</div>
-			<div class="custom-control custom-checkbox " style="float: right;">
-				<input type="checkbox" class="custom-control-input" id="check1" >
-				<label class="custom-control-label" for="check1">记住密码&nbsp;&nbsp;</label>
-			</div>
+		<div class="form-group">
+			<input id="register-passwords" class="input-material" type="password" name="registerPasswords" placeholder="确认密码"   >
+			<div class="invalid-feedback">
+								两次密码必须相同 且在6~10位之间
+							</div>
 		</div>
-		</form>
-		<br />
-		<br />
-		<br />
-		<div>没有账号?</div><a href="register.html" class="signup">&nbsp;注册</a>
+		<div class="form-group">
+			<button id="regbtn" type="button" name="registerSubmit" class="btn btn-primary">注册</button>
+		</div>
+		<small>已有账号?</small><a href="login.html" class="signup">&nbsp;登录</a>
 	</div>
 	</div>
 </div>
