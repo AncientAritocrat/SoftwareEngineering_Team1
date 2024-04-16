@@ -1,0 +1,10 @@
+//修改Mysql的储存目录
+[mysqld]
+datadir=/usr/local/mysql/data
+socket=/var/lib/mysql/mysql.sock
+
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
