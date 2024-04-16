@@ -1,0 +1,77 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-5.3.0/css/bootstrap.css">
+</head>
+<body>
+{#加载侧边目录栏#}
+<div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
+     data-bs-backdrop="false" data-bs-scroll="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">集成式土木助手</h5>
+        <!--        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+    </div>
+    <div class="offcanvas-body">
+        {#        Content#}
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link " href="http://localhost:8000/spider/">爬虫模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">裂缝识别模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">BIM模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">CAD模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">交流论坛模式</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{#右侧内容部分#}
+<div class="container" style="display: inline-block; width: 1078px; margin-left: 412px">
+    {#    在此输入内容#}
+    <div class="card text-center">
+        <div class="card-header">
+            混凝土裂缝识别
+        </div>
+    
+        {% block content %}
+        <div class="card-body">
+            <div class="mb-3">
+                <form method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <label for="formFile" class="form-label">请选择需要识别的裂缝图片</label>
+{#                    <input class="form-control" type="file" id="formFile">#}
+                   <div>
+                       {{form.target }}
+                   </div>
+                    <button type="submit" id="MySubmit">开始识别</button>
+                </form>
+            </div>
+        </div>
+        {% endblock %}
+    
+    </div>
+    <div class="card mb-3">
+{#        <img src="/static/PredictedPicture/test/test.jpg" class="card-img-top" alt="...">#}
+        {% csrf_token %}
+        <img src={{ imgPath }} class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">识别后图片保存位置</h5>
+            <p class="card-text"> djangoProject/IntegratedApp/static/PredictedPicture/</p>
+            <p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

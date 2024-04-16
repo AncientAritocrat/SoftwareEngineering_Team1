@@ -13,7 +13,7 @@ def spider(target, url):
 
     name = target  # 图片关键词
     global path
-    path = "../result/images/" + name + '/'  # 图片保存路径（manage.py的上层文件夹中）
+    path = "../result/images/" + name + '/'  # 图片保存路径（manage.py目录的上层文件夹中）
     countNum = 35  # 爬取数量 35的倍数
     key = urllib.parse.quote(name)
     first = 1

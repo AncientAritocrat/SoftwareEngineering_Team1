@@ -1,0 +1,47 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/static/plugins/bootstrap-5.3.0/css/bootstrap.css">
+</head>
+<body>
+{#加载侧边目录栏#}
+<div class="offcanvas offcanvas-start show" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel"
+     data-bs-backdrop="false" data-bs-scroll="true">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasLabel">集成式土木助手</h5>
+        <!--        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>-->
+    </div>
+    <div class="offcanvas-body">
+        {#        Content#}
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">爬虫模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">裂缝识别模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">BIM模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">CAD模式</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">交流论坛模式</a>
+            </li>
+            {#            <li class="nav-item">#}
+            {#                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>#}
+            {#            </li>#}
+        </ul>
+    </div>
+</div>
+{#右侧内容部分#}
+<div class="container" style="display: inline-block; width: 1078px; margin-left: 412px">
+{#    在此输入内容#}
+</div>
+</body>
+</html>
