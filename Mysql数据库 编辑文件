@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+
+import pymysql
+
+# 1.连接Mysql
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='Syz123!@#', charset='utf8', db='unicom')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+# 2.发送指令
+sql = "insert into admin(username, password, mobile) values(%s, %s, %s);"
+cursor.execute(sql, ['toker', '123456', '12355674325'])
+conn.commit()
+
+# 3.关闭
+cursor.close()
+conn.close()
