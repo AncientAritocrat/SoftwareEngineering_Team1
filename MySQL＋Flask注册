@@ -1,0 +1,50 @@
+from flask import Flask, render_template, request
+import pymysql
+
+app = Flask(__name__)
+
+@app.route("/add/user", methods=['GET', 'POST'])
+def addUser():
+    if request.method == 'GET':
+        return render_template("addUser.html")
+    else:
+        username = request.form.get('user')
+        password = request.form.get('pwd')
+        mobile = request.form.get('mobile')
+
+        # 1.连接Mysql
+        conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                            passwd='Syz123!@#', charset='utf8', db='unicom')
+        cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+        # 2.发送指令
+        sql = "insert into admin(username, password, mobile) values(%s, %s, %s);"
+        cursor.execute(sql, [username, password, mobile])
+        conn.commit()
+
+        # 3.关闭
+        cursor.close()
+        conn.close()
+
+        return "添加成功"
+
+#前端页面
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5200, debug=True)
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>添加用户</h1>
+    <form method="post" action="/add/user">
+        <input type="text" name="user" placeholder="用户名">
+        <input type="text" name="pwd" placeholder="密码">
+        <input type="text" name="mobile" placeholder="手机号">
+        <input type="submit" value="提 交">
+    </form>
+</body>
+</html>
