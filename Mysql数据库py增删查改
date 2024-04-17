@@ -1,0 +1,64 @@
+#编辑python文件
+#!/usr/bin/env python3
+import pymysql
+# 1.连接Mysql
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='Syz123!@#', charset='utf8', db='unicom')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# 2.发送指令
+sql = "insert into admin(username, password, mobile) values(%s, %s, %s);"
+cursor.execute(sql, ['toker', '123456', '12355674325'])
+conn.commit()
+# 3.关闭
+cursor.close()
+conn.close()
+
+
+
+#查询数据
+#!/usr/bin/env python3
+import pymysql
+# 1.连接Mysql
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                       passwd='Akali2153263!@#', charset='utf8', db='unicom')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# 2.发送指令
+sql = "select * from admin where id > %s"
+cursor.execute(sql, [2, ])
+# data_list = cursor.fetchall()		查询一条数据,为字典
+data_list = cursor.fetchall()		# 查询所有符合条件的数据,为列表套多个字典
+for row_dict in data_list:
+    print(row_dict)
+# 3.关闭
+cursor.close()
+conn.close()
+
+#删除特定数据
+#!/usr/bin/env python3
+import pymysql
+# 1.连接Mysql
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                       passwd='Akali2153263!@#', charset='utf8', db='unicom')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# 2.发送指令
+sql = "delete from admin where id > %s"
+cursor.execute(sql, [3, ])
+conn.commit()
+# 3.关闭
+cursor.close()
+conn.close()
+
+
+#修改已有数据
+#!/usr/bin/env python3
+import pymysql
+# 1.连接Mysql
+conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                       passwd='Akali2153263!@#', charset='utf8', db='unicom')
+cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+# 2.发送指令
+sql = "update admin set mobile=%s where id = %s"
+cursor.execute(sql, ['12332145665', 3])
+conn.commit()
+# 3.关闭
+cursor.close()
+conn.close()
