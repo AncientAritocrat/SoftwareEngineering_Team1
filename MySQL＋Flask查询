@@ -1,0 +1,97 @@
+from flask import Flask, render_template, request
+import pymysql
+
+app = Flask(__name__)
+
+
+@app.route("/add/user", methods=['GET', 'POST'])
+def addUser():
+    if request.method == 'GET':
+        return render_template("addUser.html")
+    else:
+        username = request.form.get('user')
+        password = request.form.get('pwd')
+        mobile = request.form.get('mobile')
+
+        # 1.连接Mysql
+        conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                            passwd='Syz123!@#', charset='utf8', db='unicom')
+        cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+        # 2.发送指令
+        sql = "insert into admin(username, password, mobile) values(%s, %s, %s);"
+        cursor.execute(sql, [username, password, mobile])
+        conn.commit()
+
+        # 3.关闭
+        cursor.close()
+        conn.close()
+
+        return "添加成功"
+
+
+@app.route("/show/user", methods=['GET', 'POST'])
+def showUser():
+    username = request.form.get('user')
+    password = request.form.get('pwd')
+    mobile = request.form.get('mobile')
+
+    # 1.连接Mysql
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root',
+                        passwd='Syz123!@#', charset='utf8', db='unicom')
+    cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
+
+    # 2.发送指令
+    sql = "select * from admin"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+
+    # 3.关闭
+    cursor.close()
+    conn.close()
+
+    return render_template("showUser.html", data_list=data_list)
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5200, debug=True)
+
+
+#前端
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>用户列表</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>姓名</th>
+                    <th>密码</th>
+                    <th>手机号</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data_list %}
+                <tr>
+                    <td>{{ item.id }}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.password }}</td>
+                    <td>{{ item.mobile }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
