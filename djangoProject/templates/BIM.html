@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block style %}
+    <link type="text/css" href="{% static 'model/styles.css' %}" rel="stylesheet"/>
+    <style>
+        .sidebar-nav .nav-item:nth-child(5) a {
+            color: #4154f1;
+            background: #f6f9ff;
+        }
+
+        .model-info {
+            height: 80px;
+            color: #012970;
+            text-align: center;
+            font-size: 24px;
+            line-height: 80px
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div style="height: 800px">
+        <model-viewer src="{% static 'model/Shield_Tunnel.glb' %}" ar ar-modes="webxr scene-viewer quick-look"
+                      camera-controls
+                      tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+            <div class="progress-bar hide" slot="progress-bar">
+                <div class="update-bar"></div>
+            </div>
+            <div id="ar-prompt">
+                <img src="{% static 'model/ar_hand_prompt.png' %}">
+            </div>
+        </model-viewer>
+        <!-- Loads <model-viewer> for browsers: -->
+        <div class="model-info">隧道点云模型展示</div>
+    </div>
+    <div class="card mb-3">
+        <a href="http://127.0.0.1:8080/?model=%E5%88%AB%E5%A2%85.rvt">
+            <img src="{{ imgPath }}" class="card-img-top" alt="...">
+        </a>
+    </div>
+    <div class="card-body">
+    <h5 class="model-info">别墅BIM模型展示</h5>
+    </div>
+    {#    <div class="col-xxl-3 col-sm-12" style="height: 800px">#}
+    {#        简单版#}
+    {#    </div>#}
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'model/script.js' %}"></script>
+    <script type="module" src="{% static 'model/model-viewer.min.js' %}"></script>
+{% endblock %}

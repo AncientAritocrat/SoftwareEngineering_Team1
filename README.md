@@ -26,7 +26,12 @@
 ### 文件解释
 * ```djangoProject/templates/spider.html``` 爬虫界面
 * ``djangoProject/templates/predict.html`` 裂缝识别界面
-* ``djangoProject/templates/models.html`` 所有页面的模板
+* ``djangoProject/templates/layout.html`` 所有页面的模板
+* ``djangoProject/templates/example.html`` layout引用方法
+* ``djangoProject/templates/home.html`` 主页（旧）
+* ``djangoProject/templates/BIM.html`` BIM展示页面
+* ``djangoProject/templates/BimMaster.html`` qmodel单独界面
+* ``djangoProject/templates/index.html`` 数据分析（首页）
 * ``djangoProject/djangoProject/settings.py`` 设置文件
 * ``djangoProject/djangoProject/urls.py`` 网址路径管理文件
 * ``djangoProject/IntegratedApp/views.py`` 视图管理
@@ -37,3 +42,17 @@
 * ``djangoProject/IntegratedApp/static/plugins/best.pt`` YOLO-V8模型文件
 * ``djangoProject/IntegratedApp/static/plugins/bootstrap-5.3.0/css/bootstrap.css`` BOOTSTRAP模板文件
 * ``djangoProject/IntegratedApp/static/media/Default`` 裂缝识别界面默认展示图片-校徽
+
+### BIM操作页面启动方法
+```commandline
+D:
+cd D:\Documents\GitHub\SoftwareEngineering_Team1\BimMaster
+http-server
+```
+接口 ``http://127.0.0.1:8080``
+
+### index页面展示数据来源
+``subside.csv``
+
+### 数据库操作
+使用subside

@@ -20,7 +20,13 @@ from django.conf import settings
 from IntegratedApp import views
 
 urlpatterns = [
-    path('spider/', views.run_spider),
-    path('predict/', views.run_predict),
+    path('spider/', views.run_spider, name='spider'),
+    path('predict/', views.run_predict, name='predict'),
+    path('BIM/', views.run_BIM, name='BIM'),
+    path('BimMaster/', views.run_BimMaster, name='BimMaster'),
+    path('CAD/', views.run_CAD, name='CAD'),
+    path('chat/', views.run_chat, name='chat'),
+    path('home/', views.home, name='home'),
+    path('index/', views.index, name='index'),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}, name='media')
 ]
