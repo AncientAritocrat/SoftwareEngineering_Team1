@@ -1,0 +1,82 @@
+var LanguageEnum = {
+    Chinese: 1,
+    English: 2,
+}
+var Language = function(languageEnum) {
+    var lan = languageEnum ? languageEnum : 1;
+    if (lan == LanguageEnum.English) {
+        this.TREENODE_ROOT = "root";
+        this.ORDERCODE = "roder";
+        this.LENGTH = "length";
+        this.TIP_MOUSE_ZOOM_OPEN = "auto zoom open";
+        this.TIP_MOUSE_ZOOM_CLOSE = "auto zoom close";
+        this.TIP_MOUSE_LOCK_OPEN = "target on mouse";
+        this.TIP_MOUSE_LOCK_CLOSE = "target on center";
+        this.TIP_ENABLEDAMPING = "damping enable";
+        this.TIP_DISABLEDAMPING = "damping disable";
+        this.TIP_ALLOW_ROTATE = "allow rotate";
+        this.TIP_NOT_ALLOW_ROTATE = "not rotate";
+        this.CSS3D_MARK_DEMO = 'hello' + '<br>' + 'world';
+        this.MACHINE_NAME = "machine name";
+        this.OPERATE = "operate";
+        this.QRCODE = "QRCODE";
+        this.VIEW_NAME = "view name";
+        this.TASK_NAME = 'task name';
+        this.FINISH_DATE = 'finish date';
+        this.ALERT_SELECT = "select one,please";
+        this.DOFINISH = "finish";
+        this.HIT_OPEN = "collision open";
+        this.HIT_CLOSE = "collision close";
+        this.INIT_MATERIAL = "materials loading...";
+        this.LOADING = "geometry loading...";
+        this.DOWNLOADING = "downloading...";
+        this.FIRSTTIME_PARSE = "parse for the first time...";
+        this.FIRSTTIME_DOWNLOAD = "downloading for the first time...";
+        this.PARSING = "parsing...";
+        this.STRUCTURE_TREE = "structure tree";
+        this.MODEL_NOT_PREPARED = "model is not preared,please wait a moment";
+        this.FACES_TOP = "TOP";
+        this.FACES_FRONT = "FRONT";
+        this.FACES_RIGHT = "RIGHT";
+        this.FACES_LEFT = "LEFT";
+        this.FACES_BACK = "BACK";
+        this.FACES_BOTTOM = "BOTTOM";
+    } else {
+        this.TREENODE_ROOT = "全部";
+        this.ORDERCODE = "序号";
+        this.LENGTH = "长度";
+        this.TIP_MOUSE_ZOOM_OPEN = "打开鼠标点击自动对焦";
+        this.TIP_MOUSE_ZOOM_CLOSE = "关闭鼠标点击自动对焦";
+        this.TIP_MOUSE_LOCK_OPEN = "已开启鼠标锚定";
+        this.TIP_MOUSE_LOCK_CLOSE = "已关闭鼠标锚定";
+        this.TIP_ENABLEDAMPING = "已开启阻尼动效";
+        this.TIP_DISABLEDAMPING = "已关闭阻尼动效";
+        this.TIP_ALLOW_ROTATE = "允许旋转";
+        this.TIP_NOT_ALLOW_ROTATE = "禁止旋转";
+        this.CSS3D_MARK_DEMO = '您好' + '<br>' + '世界';
+        this.MACHINE_NAME = "设备名称";
+        this.OPERATE = "操作";
+        this.QRCODE = "二维码";
+        this.VIEW_NAME = "视图名称";
+        this.TASK_NAME = '计划名称';
+        this.FINISH_DATE = '完成日期';
+        this.ALERT_SELECT = "请选择构件";
+        this.DOFINISH = "操作完成";
+        this.HIT_OPEN = "已开启碰撞";
+        this.HIT_CLOSE = "已关闭碰撞";
+        this.LOADING = "加载中...";
+        this.INIT_MATERIAL = "材质加载中...";
+        this.DOWNLOADING = "下载中...";
+        this.FIRSTTIME_PARSE = "首次下载解析...";
+        this.FIRSTTIME_DOWNLOAD = "首次打开下载中...";
+        this.PARSING = "解析中...";
+        this.STRUCTURE_TREE = "构件树";
+        this.MODEL_NOT_PREPARED = "服务器正在发布模型。请稍后再试。";
+        this.FACES_TOP = "上";
+        this.FACES_FRONT = "南";
+        this.FACES_RIGHT = "东";
+        this.FACES_LEFT = "西";
+        this.FACES_BACK = "北";
+        this.FACES_BOTTOM = "下";
+    }
+}

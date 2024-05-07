@@ -1,0 +1,508 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block style %}
+    <link href="{% static 'layout/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/vendor/quill/quill.snow.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/vendor/quill/quill.bubble.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/vendor/simple-datatables/style.css' %}" rel="stylesheet">
+    <style>
+        .sidebar-nav .nav-item:nth-child(1) a {
+            color: #4154f1;
+            background: #f6f9ff;
+        }
+
+        .dbtable {
+            height: 292px;
+            overflow: auto;
+        }
+    </style>
+
+    <script src="{% static 'layout/vendor/echarts/echarts.min.js' %}"></script>
+{% endblock %}
+
+
+{% block content %}
+    <!-- Left side columns -->
+    <div class="col-lg-8">
+        <div class="row">
+
+            <!-- Sales Card -->
+            <div class="col-xxl-6 col-md-6">
+                <div class="card info-card sales-card">
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>时间区间</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">近半年</a></li>
+                            <li><a class="dropdown-item" href="#">今年</a></li>
+                            <li><a class="dropdown-item" href="#">近三年</a></li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">最大变化量 <span>| 近半年</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-cart"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ max_change.change|floatformat:4 }}</h6>
+                                <span class="text-success small pt-1 fw-bold">{{ max_change.date }}</span> <span
+                                    class="text-muted small pt-2 ps-1">{{ max_change.segment }}</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Sales Card -->
+
+            <!-- Revenue Card -->
+            <div class="col-xxl-6 col-md-6">
+                <div class="card info-card revenue-card">
+
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>时间区间</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">近半年</a></li>
+                            <li><a class="dropdown-item" href="#">今年</a></li>
+                            <li><a class="dropdown-item" href="#">近三年</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">最多沉降 <span>| 近半年</span></h5>
+
+                        <div class="d-flex align-items-center">
+                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                <i class="bi bi-currency-dollar"></i>
+                            </div>
+                            <div class="ps-3">
+                                <h6>{{ max_subside.max_subsidence }}</h6>
+                                <span class="text-success small pt-1 fw-bold">近半年</span> <span
+                                    class="text-muted small pt-2 ps-1">{{ max_subside.segment }}</span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div><!-- End Revenue Card -->
+            <div><!-- 收纳备注，取消时记得删除 -->
+                <!-- Customers Card -->
+                {#            <div class="col-xxl-4 col-xl-12">#}
+                {##}
+                {#                <div class="card info-card customers-card">#}
+                {##}
+                {#                    <div class="filter">#}
+                {#                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>#}
+                {#                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">#}
+                {#                            <li class="dropdown-header text-start">#}
+                {#                                <h6>时间区间</h6>#}
+                {#                            </li>#}
+                {##}
+                {#                            <li><a class="dropdown-item" href="#">近半年</a></li>#}
+                {#                            <li><a class="dropdown-item" href="#">今年</a></li>#}
+                {#                            <li><a class="dropdown-item" href="#">近三年</a></li>#}
+                {#                        </ul>#}
+                {#                    </div>#}
+                {##}
+                {#                    <div class="card-body">#}
+                {#                        <h5 class="card-title">Customers <span>| This Year</span></h5>#}
+                {##}
+                {#                        <div class="d-flex align-items-center">#}
+                {#                            <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">#}
+                {#                                <i class="bi bi-people"></i>#}
+                {#                            </div>#}
+                {#                            <div class="ps-3">#}
+                {#                                <h6>1244</h6>#}
+                {#                                <span class="text-danger small pt-1 fw-bold">12%</span> <span#}
+                {#                                    class="text-muted small pt-2 ps-1">decrease</span>#}
+                {##}
+                {#                            </div>#}
+                {#                        </div>#}
+                {##}
+                {#                    </div>#}
+                {#                </div>#}
+                {##}
+                {#            </div><!-- End Customers Card -->#}
+            </div>
+            <!-- 总图表 -->
+            <div class="col-12">
+                <div class="card">
+
+                    <div class="filter">
+                        <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                            <li class="dropdown-header text-start">
+                                <h6>时间区间</h6>
+                            </li>
+
+                            <li><a class="dropdown-item" href="#">近半年</a></li>
+                            <li><a class="dropdown-item" href="#">今年</a></li>
+                            <li><a class="dropdown-item" href="#">近三年</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="card-body">
+                    <h5 class="card-title">病害变化图 <span>/拱顶沉降</span></h5>
+
+                    <!-- 主图表 -->
+                    <div id="reportsChart" style="height: 365px;">{{ error_message }}</div>
+
+                    <script>
+                        (function (elementId) {
+                            function getNthElement(data, n) {
+                                // 使用 map 方法获取每个子数组的第 "n" 个元素，并放入一个新数组中
+                                let nthElements = data.map(function (item) {
+                                    return item[n - 1]; // 返回每个子数组的第 "n" 个元素
+                                });
+                                return nthElements;
+                            }
+
+                            let myChart = echarts.init(document.getElementById('reportsChart'));
+
+                            {# 防止被转义 #}
+                            let headers = {{ headers|safe }};
+                            let content = {{ content|safe }};
+
+                            let data_series = content.map(function (item) {
+                                return headers.map(function (header) {
+                                    return item[header];
+                                });
+                            });
+
+                            let data_legend = headers.slice(1);
+
+                            let series = [];
+
+                            for (let i = 0; i < headers.length - 1; i++) {
+                                let serie = {
+                                    name: headers[i + 1],
+                                    type: 'line',
+                                    data: getNthElement(data_series, i + 2)
+                                };
+                                series.push(serie);
+                            }
+
+                            // 监听图例点击事件, 用于改变最大最小值
+                            myChart.on('legendselectchanged', function (params) {
+                                // 重新计算最大值和最小值
+                                let max = Number.MIN_SAFE_INTEGER;
+                                let min = Number.MAX_SAFE_INTEGER;
+                                myChart.getOption().series.forEach(function (serie) {
+                                    if (params.selected[serie.name]) {
+                                        serie.data.forEach(function (value) {
+                                            max = Math.max(max, value);
+                                            min = Math.min(min, value);
+                                        });
+                                    }
+                                });
+
+                                // 更新 y 轴配置
+                                let option = myChart.getOption();
+                                option.yAxis[0].max = max;
+                                option.yAxis[0].min = min;
+                                myChart.setOption(option);
+                            });
+
+                            let option = {
+                                tooltip: {
+                                    trigger: 'axis'
+                                },
+                                legend: {
+                                    data: data_legend
+                                },
+                                xAxis: {
+                                    type: 'category',
+                                    data: getNthElement(data_series, 1),
+                                },
+                                yAxis: {
+                                    type: 'value',
+                                    max: function (value) {
+                                        return Math.max(...series.map(serie => Math.max(...serie.data)));
+                                    },
+                                    min: function (value) {
+                                        return Math.min(...series.map(serie => Math.min(...serie.data)));
+                                    },
+                                },
+                                series: series
+                            };
+
+                            myChart.setOption(option);
+
+                            let resizeObserver = new ResizeObserver(function (entries) {
+                                entries.forEach(function (entry) {
+                                    if (entry.target.id === 'main') {
+                                        myChart.resize();
+                                    }
+                                });
+                            });
+
+                            let mainElement = document.getElementById('main');
+
+                            resizeObserver.observe(mainElement);
+                        })();
+                    </script>
+                    <!-- End 主图表 -->
+
+                </div>
+
+            </div>
+        </div><!-- End Reports -->
+
+        <!-- Recent Sales -->
+        <div class="col-12">
+            <div class="card recent-sales overflow-auto">
+
+                <div class="filter">
+                    <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                        <li class="dropdown-header text-start">
+                            <h6>时序数据</h6>
+                        </li>
+
+                        <li><a class="dropdown-item" href="#">拱顶沉降</a></li>
+                        <li><a class="dropdown-item" href="#">净空收敛</a></li>
+                    </ul>
+                </div>
+
+                <div class="card-body dbtable">
+                    <h5 class="card-title">时序数据 <span>| 拱顶沉降</span></h5>
+
+                    <table class="table table-striped datatable">
+                        <thead>
+                        <tr>
+                            {% for header in headers %}
+                                <th scope="col">{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                        </thead>
+                        <tbody class="table-group-divider">
+                        {% for item in content %}
+                            <tr>
+                                {% for key, value in item.items %}
+                                    {% if key == 'date' %}
+                                        <th scope="row">{{ value }}</th>
+                                    {% else %}
+                                        <th>{{ value }}</th>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+        </div><!-- End Recent Sales -->
+    </div>
+
+    {# 这个多的div不能删除，会出bug #}
+    </div><!-- End Left side columns -->
+
+    <!-- Right side columns -->
+    <div class="col-lg-4">
+
+        <!-- 隧道分析图 -->
+        <div class="card">
+            <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" style="height: 200px; overflow: auto">
+                    <li class="dropdown-header text-start">
+                        <h6>隧道区段</h6>
+                    </li>
+                    {% for header in headers %}
+                        {% if header == "date" %}
+                        {% else %}
+                            <li><a class="dropdown-item" href="#">{{ header }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card-body pb-0">
+                <h5 class="card-title">隧道区段 <span>| nk9_030jkj_1</span></h5>
+
+                <div id="tunnelChart" style="min-height: 400px;" class="echart"></div>
+
+                <script>
+                    (function () {
+                        function getNthElement(data, n) {
+                            // 使用 map 方法获取每个子数组的第 "n" 个元素，并放入一个新数组中
+                            let nthElements = data.map(function (item) {
+                                return item[n - 1]; // 返回每个子数组的第 "n" 个元素
+                            });
+                            return nthElements;
+                        }
+
+                        let myChart = echarts.init(document.getElementById('tunnelChart'));
+
+                        {# 防止被转义 #}
+                        let headers = {{ headers|safe }};
+                        let content = {{ content|safe }};
+
+                        let data_series = content.map(function (item) {
+                            return headers.map(function (header) {
+                                return item[header];
+                            });
+                        });
+
+                        let data_legend = headers.slice(1);
+
+                        let maxVal = Math.max(...data_series.flat());
+                        let minVal = Math.min(...data_series.flat());
+
+                        let option = {
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            legend: {
+                                data: data_legend
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: getNthElement(data_series, 1),
+                            },
+                            yAxis: {
+                                type: 'value',
+                                {# 防止纵轴不显示 #}
+                                max: maxVal,
+                                min: minVal,
+                            },
+                            series: [{
+                                name: 'nk9_030jkj_1',
+                                type: 'line',
+                                data: getNthElement(data_series, 2),
+                            }]
+                        };
+                        myChart.setOption(option);
+
+                        let resizeObserver = new ResizeObserver(function (entries) {
+                            // Loop through the observed entries
+                            entries.forEach(function (entry) {
+                                // Check if the observed entry is the element with the ID 'main'
+                                if (entry.target.id === 'main') {
+                                    // Resize the chart when the width changes
+                                    myChart.resize();
+                                }
+                            });
+                        });
+
+                        let mainElement = document.getElementById('main');
+
+                        resizeObserver.observe(mainElement);
+                    })();
+                </script>
+
+            </div>
+        </div><!-- End 隧道分析图 -->
+
+        <!-- 日期分析图 -->
+        <div class="card">
+            <div class="filter">
+                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow" style="height: 200px; overflow: auto">
+                    <li class="dropdown-header text-start">
+                        <h6>日期检索</h6>
+                    </li>
+
+                    {% for item in content %}
+                        <li><a class="dropdown-item" href="#">{{ item.date }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card-body pb-0">
+                <h5 class="card-title">日期检索 <span>| 2023-5-21</span></h5>
+
+                <div id="dateChart" style="min-height: 400px;" class="echart"></div>
+
+                <script>
+                    (function () {
+                        function getKeys(data) {
+                            // 获取对象的所有 key，并放入一个新数组中
+                            return Object.keys(data).slice(1);
+                        }
+
+                        function getValues(data) {
+                            // 获取对象的所有 value，并放入一个新数组中
+                            return Object.values(data).slice(1);
+                        }
+
+                        let myChart = echarts.init(document.getElementById('dateChart'));
+
+                        {# 防止被转义 #}
+                        let content = {{ content|safe }};
+
+                        let data_keys = getKeys(content[0]);
+                        let data_values = getValues(content[0]);
+
+                        let maxVal = Math.max(...data_values);
+                        let minVal = Math.min(...data_values);
+
+                        let option = {
+                            tooltip: {
+                                trigger: 'axis'
+                            },
+                            xAxis: {
+                                type: 'category',
+                                data: data_keys,
+                            },
+                            yAxis: {
+                                type: 'value',
+                                {# 防止纵轴不显示 #}
+                                max: maxVal,
+                                min: minVal,
+                            },
+                            series: [{
+                                type: 'bar',
+                                data: data_values,
+                            }]
+                        };
+                        myChart.setOption(option);
+
+                        let resizeObserver = new ResizeObserver(function (entries) {
+                            // Loop through the observed entries
+                            entries.forEach(function (entry) {
+                                // Check if the observed entry is the element with the ID 'main'
+                                if (entry.target.id === 'main') {
+                                    // Resize the chart when the width changes
+                                    myChart.resize();
+                                }
+                            });
+                        });
+
+                        let mainElement = document.getElementById('main');
+
+                        resizeObserver.observe(mainElement);
+                    })();
+
+                </script>
+
+            </div>
+        </div><!-- End 日期分析表 -->
+
+    </div><!-- End Right side columns -->
+{% endblock %}
+
+
+{% block script %}
+    <script src="{% static 'layout/vendor/apexcharts/apexcharts.min.js' %}"></script>
+    <script src="{% static 'layout/vendor/chart.js/chart.umd.js' %}"></script>
+    <script src="{% static 'layout/vendor/quill/quill.js' %}"></script>
+    <script src="{% static 'layout/vendor/simple-datatables/simple-datatables.js' %}"></script>
+    <script src="{% static 'layout/vendor/tinymce/tinymce.min.js' %}"></script>
+    <script src="{% static 'layout/vendor/php-email-form/validate.js' %}"></script>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+2023-12-05 08:23:12: -- Analysis Started by User Command
+2023-12-05 08:23:13: 变更：2， 冲突：0， 复制时间：0， 复制状态：0/0， 错误： 0, All: 96
+2023-12-05 08:23:13: Left to Right: Copy File: 2 
+2023-12-05 08:23:13: ----- ：分析已结束。 历时 00:00:01， 速度： 92 个文件/秒 -----
+2023-12-05 08:23:13: 
+2023-12-05 08:23:15: == Sync Started by User Command
+2023-12-05 08:23:15: 覆盖复制 'D:/demo/qm-web/qmode-js/html/bimjs/main.css' -> 'D:/demo/gitee-publish/qmodel-js/bimjs/main.css'
+2023-12-05 08:23:15: 覆盖复制 'D:/demo/qm-web/qmode-js/html/static/qmodel/qmodel.js' -> 'D:/demo/gitee-publish/qmodel-js/static/qmodel/qmodel.js'
+2023-12-05 08:23:15: Deleted Recycled: D:/demo/gitee-publish/qmodel-js/_gsdata_/_saved_/bimjs/net.js
+2023-12-05 08:23:15: Deleted Recycled: D:/demo/gitee-publish/qmodel-js/_gsdata_/_saved_/view.js
+2023-12-05 08:23:15: Deleted Recycled: D:/demo/gitee-publish/qmodel-js/_gsdata_/_saved_/bimjs/qmodel.scene.js
+2023-12-05 08:23:15: ===== ：同步完毕。时间：00:00:00，速度： 0 字节/s =====, 项目同步未必： 2，错误： 0
+2023-12-05 08:23:15: 

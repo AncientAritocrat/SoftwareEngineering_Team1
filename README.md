@@ -43,16 +43,22 @@
 * ``djangoProject/IntegratedApp/static/plugins/bootstrap-5.3.0/css/bootstrap.css`` BOOTSTRAP模板文件
 * ``djangoProject/IntegratedApp/static/media/Default`` 裂缝识别界面默认展示图片-校徽
 
-### BIM操作页面启动方法
-```commandline
-D:
-cd D:\Documents\GitHub\SoftwareEngineering_Team1\BimMaster
-http-server
-```
-接口 ``http://127.0.0.1:8080``
 
-### index页面展示数据来源
-``subside.csv``
+### index页面
+* 展示数据来源``subside.csv``
+* 功能实现``echarts``
 
-### 数据库操作
-使用subside
+### 裂缝识别页面页面
+* 模型``YOLO-V8``
+* 数据``roboflow.com``
+
+### BIM页面
+* 隧道点云模型展示``modelviewer``
+* 别墅BIM模型展示``qmodel``
+* node.js启动方法
+    ```commandline
+    D:
+    cd D:\Documents\GitHub\SoftwareEngineering_Team1\BimMaster
+    http-server
+    ```
+* node.js接口 ``http://127.0.0.1:8080``
