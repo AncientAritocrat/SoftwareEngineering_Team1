@@ -1,10 +1,184 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{{ title }}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'layout/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'layout/img/apple-touch-icon.png' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+            rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'layout/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'layout/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'layout/css/style.css' %}" rel="stylesheet">
+
+    {% block style %}{% endblock %}
+
 </head>
+
 <body>
-    <li><a href="/upload/list/">上传图片</a></li>
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+
+    <div class="d-flex align-items-center justify-content-between">
+        <a href="{% url 'index' %}" class="logo d-flex align-items-center">
+            <img src="{% static 'layout/img/logo.png' %}" alt="">
+            <span class="d-none d-lg-block">集成式土木助手</span>
+        </a>
+        <i class="bi bi-list toggle-sidebar-btn"></i>
+    </div><!-- End Logo -->
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+            <li class="nav-item dropdown pe-3">
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="{% static 'layout/img/default.png' %}" alt="Profile" class="rounded-circle">
+                    <span class="d-none d-md-block dropdown-toggle ps-2">丁春阳</span>
+                </a><!-- End Profile Iamge Icon -->
+
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                    <li class="dropdown-header">
+                        <h6>丁春阳</h6>
+                        <span>小组组长</span>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-person"></i>
+                            <span>个人信息</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-gear"></i>
+                            <span>账户设置</span>
+                        </a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="#">
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>登出</span>
+                        </a>
+                    </li>
+
+                </ul><!-- End Profile Dropdown Items -->
+            </li><!-- End Profile Nav -->
+
+        </ul>
+    </nav><!-- End Icons Navigation -->
+
+</header><!-- End Header -->
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'index' %}">
+                <i class="bi bi-grid"></i>
+                <span>首页</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+        <li class="nav-heading">功能列表</li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'spider' %}">
+                <i class="bi bi-person"></i>
+                <span>网络爬虫功能</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'predict' %}">
+                <i class="bi bi-question-circle"></i>
+                <span>裂缝推理预测</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'BIM' %}">
+                <i class="bi bi-envelope"></i>
+                <span>BIM模型展示</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'CAD' %}">
+                <i class="bi bi-card-list"></i>
+                <span>CAD模型展示</span>
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{% url 'chat' %}">
+                <i class="bi bi-box-arrow-in-right"></i>
+                <span>公共交流论坛</span>
+            </a>
+        </li>
+
+    </ul>
+
+</aside><!-- End Sidebar-->
+
+<main id="main" class="main">
+    <section class="section dashboard">
+        <div class="row">
+            {% block content %}{% endblock %}
+        </div>
+    </section>
+
+</main><!-- End #main -->
+
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+    <div class="copyright">
+        集成式土木助手
+    </div>
+    <div class="credits">Designed by TEAM1</div>
+    </div>
+</footer><!-- End Footer -->
+
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+<!-- Vendor JS Files -->
+<script src="{% static 'layout/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Template Main JS File -->
+<script src="{% static 'layout/js/main.js' %}"></script>
+
+{% block script %}{% endblock %}
+
 </body>
+
 </html>

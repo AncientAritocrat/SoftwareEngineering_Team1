@@ -1,6 +1,8 @@
 from ultralytics import YOLO
 import os
-from static.utils.GetFileName import get_file_name
+
+from utils.GetFileName import get_file_name
+
 
 def PicturePridict(image_path):
     ModelPath = "../IntegratedApp/static/plugins/best.pt"
