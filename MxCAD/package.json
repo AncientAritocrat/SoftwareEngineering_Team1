@@ -1,0 +1,27 @@
+{
+  "name": "mxcad-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite build --watch --mode=debug | node serve",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "mxcad": "latest",
+    "mxdraw": "latest",
+    "sass": "^1.66.1",
+    "vite": "^4.4.4",
+    "vue": "^3.3.4"
+  },
+  "dependencies": {
+    "mapbox-gl": "2.8.2",
+    "qrcode-generator": "^1.4.4",
+    "three": "0.113.2"
+  }
+}
