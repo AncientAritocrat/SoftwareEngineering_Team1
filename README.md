@@ -55,10 +55,19 @@
 ### BIM页面
 * 隧道点云模型展示``modelviewer``
 * 别墅BIM模型展示``qmodel``
-* node.js启动方法
-    ```commandline
-    D:
-    cd D:\Documents\GitHub\SoftwareEngineering_Team1\BimMaster
-    http-server
-    ```
+* 启动方法：
+  - 进入``BimMaster``文件夹
+  - node.js
+      ```commandline
+      http-server
+      ```
 * node.js接口 ``http://127.0.0.1:8080``
+
+### CAD界面
+* 启动方法
+  - 进入``CAD``文件夹
+  - node.js
+    ```commandline
+    yarn
+    yarn dev
+    ```
