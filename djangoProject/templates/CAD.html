@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block style %}
+    <style>
+        .sidebar-nav .nav-item:nth-child(6) a {
+        {# N处填数字表示需要高亮的导航栏行数 #} color: #4154f1;
+            background: #f6f9ff;
+        }
+
+        .model-info {
+            height: 80px;
+            color: #012970;
+            text-align: center;
+            font-size: 24px;
+            line-height: 80px
+        }
+    </style>
+
+{% endblock %}
+
+
+{% block content %}
+    {#    这里填写内容#}
+    <div class="card mb-3" style="width: 18rem;">
+        <a href="http://localhost:5173/#/preview?key=tmp_preview&isLocal=true">
+            <img src="{{ imgPath }}" class="card-img-top" alt="...">
+        </a>
+
+        <div class="card-body">
+            <h5 class="card-text" style="margin-left: 50px">草坪CAD展示</h5>
+        </div>
+    </div>
+{% endblock %}

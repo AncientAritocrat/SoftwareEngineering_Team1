@@ -1,0 +1,16 @@
+{
+  "name": "vjmap-visiual",
+  "version": "1.0.0",
+  "description": "vjmap-visiual",
+  "author": "vjmap",
+  "license": "GPL",
+  "private": true,
+  "scripts": {
+    "dev": "cd packages/editor & vite",
+    "build": "cd packages/editor & vite build",
+    "preview": "cd packages/editor & vite preview"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

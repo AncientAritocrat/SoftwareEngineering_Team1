@@ -147,7 +147,8 @@ def run_BimMaster(request):
 
 def run_CAD(request):
     title = "CAD"
-    return render(request, "layout.html", {"title": title})
+    imgPath = "/static/media/CAD.png"
+    return render(request, "CAD.html", {"title": title, "imgPath": imgPath})
 
 
 def run_chat(request):
