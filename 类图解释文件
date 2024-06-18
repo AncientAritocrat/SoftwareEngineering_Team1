@@ -1,0 +1,130 @@
+# BIM
+## qmodel ==>BIM模型
+###  属性
+- id
+- 名称
+- 构件
+### 行为
+- `open_model()` 打开模型
+- `append_models()` 合并模型
+- `set_model_transform` 调整模型位置
+- `delete_model()` 删除模型
+- `rotate_models()` 旋转模型
+
+## comps ==>模型中的构件
+### 属性
+- id
+- 颜色
+- 材质
+### 行为
+- `get_selection_ids()` 返回选择构件的id
+- `set_comps_color()` 更改构件的颜色
+- `set_comps_material()` 更改构件的材质
+
+## mark ==>标记
+###  属性
+- id
+- 位置
+### 行为
+- `set_2dmark_status()` 创建标记
+- `remove_mark_byid()` 删除标记
+
+## camera ==>漫游相机
+###  属性
+- 位置
+### 行为
+- `set_camera_json()` 调整相机位置
+
+---
+# CAD
+## Map 
+###  属性
+- id
+- 名称
+- 图层
+- 中心点位置
+- 缩放
+- 旋转角度
+### 行为
+- `setCenter()` 地图的地理中心点
+- `setZoom()` 地图的缩放级别
+- `setBearing()` 地图的方位（旋转）
+
+## Layer ==>Map中的图层
+###  属性
+- id
+- 名称
+- 可视性
+### 行为
+- `addLayer()` 添加图层
+- `removeLayer()` 删除具有给定ID的图层
+- `getLayer()` 返回具有指定ID的图层
+- `addMeasureLayer()` 创建测量图层
+- `addDrawLayer()` 创建绘制图层
+
+## Marker ==> 用于测量功能
+###  属性
+- id
+- 文字
+- 位置
+### 行为
+- `addMarker()`
+- `removeMarker()`
+
+## Draw 
+###  属性
+- id
+- 类型 ==> (包含line/polygon/point/circle/rectangle，见下)
+### 行为
+- `draw_line()`
+- `draw_polygon()`
+- `draw_point()`
+- `draw_circle()`
+- `draw_rectangle()`
+- `draw_delete()`
+
+## line
+###  属性
+- id
+- 起点
+- 终点
+### 行为
+- `line_create()`
+- `line_delete()`
+- `line_lenth()` 计算长度 ==> 用于测量功能
+
+## polygon
+###  属性
+- id
+- 起点
+- 中间点
+### 行为
+- `polygon_create()`
+- `polygon_delete()`
+- `polygon_area()` 计算面积 ==> 用于测量功能
+
+## point
+###  属性
+- id
+- 位置
+### 行为
+- `point_create()`
+- `point_delete()`
+
+## circle
+###  属性
+- id
+- 圆心位置
+- 半径
+### 行为
+- `circle_create()`
+- `circle_delete()`
+
+## rectangle
+###  属性
+- id
+- 起点
+- 终点
+### 行为
+- `rectangle_create()`
+- `rectangle_delete()`
